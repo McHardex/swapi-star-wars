@@ -1,13 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Carousel from 'react-bootstrap/Carousel';
-import logo from '../../images/logo.png';
-import starship1 from '../../images/starship-1.jpg';
-import starship2 from '../../images/starship-2.jpg';
-import starship3 from '../../images/starship-3.jpg';
-import starship4 from '../../images/starship-4.jpg';
-import starship5 from '../../images/starship-5.jpg';
-import starship6 from '../../images/starship-6.jpg';
+import logo from '../../../images/logo.png';
+import starship1 from '../../../images/starship-1.jpg';
+import starship3 from '../../../images/starship-3.jpg';
+import starship4 from '../../../images/starship-4.jpg';
+import starship5 from '../../../images/starship-5.jpg';
 import './header.scss';
 
 const Header = ({ transition }) => {
@@ -55,13 +53,6 @@ const Header = ({ transition }) => {
             <Carousel.Item>
               <img
                 className="d-block w-100"
-                src={starship2}
-                alt="Third slide"
-              />
-            </Carousel.Item>
-            <Carousel.Item>
-              <img
-                className="d-block w-100"
                 src={starship3}
                 alt="Third slide"
               />
@@ -77,13 +68,6 @@ const Header = ({ transition }) => {
               <img
                 className="d-block w-100"
                 src={starship5}
-                alt="Third slide"
-              />
-            </Carousel.Item>
-            <Carousel.Item>
-              <img
-                className="d-block w-100"
-                src={starship6}
                 alt="Third slide"
               />
             </Carousel.Item>
