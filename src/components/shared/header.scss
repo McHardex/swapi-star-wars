@@ -1,0 +1,144 @@
+.header-container {
+  height: 80vh;
+  position: relative;
+  width: 100%;
+  background-image: url('../../images/hero-banner.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .logo {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    width: 150px;
+    height: 60px;
+    outline: none;
+  }
+
+  .header-content {
+    color: #fff;
+
+    .content-icon-wrap {
+      display: flex;
+      flex-direction: row;
+      margin: 0 auto;
+      justify-content: center;
+      align-items: center;
+      width: fit-content;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #fff;
+
+      img {
+        width: 150px;
+        height: 60px;
+      }
+
+      .directory {
+        margin-left: 20px;
+        font-size: 45px;
+        font-weight: 700;
+      }
+    }
+    .starwars-note {
+      width: 50%;
+      margin: 0 auto;
+      font-size: 28px;
+      color: #b9b9b9;
+    }
+
+    .search-box {
+      flex-direction: row;
+      width: 70%;
+      margin: 0 auto;
+      position: relative;
+      display: flex;
+      align-items: center;
+
+      input[type='search'] {
+        width: 100%;
+        padding: 15px 0;
+        padding-left: 200px;
+        font-size: 25px;
+        border-radius: 5px;
+        background: #fffefe;
+        border: none;
+      }
+
+      i.fa.fa-search {
+        position: absolute;
+        font-size: 40px;
+        left: 100px;
+        color: #696868;
+      }
+    }
+  }
+}
+
+.carousel {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.carousel-item,
+.carousel-item.active {
+  height: 50vh;
+  width: 100% !important;
+  object-fit: cover;
+
+  img {
+    height: 50vh;
+    width: 100% !important;
+    object-fit: cover;
+  }
+}
+
+.carousel-inner {
+  width: 100%;
+  margin: 0 auto;
+}
+
+ol.carousel-indicators,
+a.carousel-control-next,
+a.carousel-control-prev {
+  display: none;
+}
+
+.caption {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: absolute;
+  left: 15%;
+  bottom: 20%;
+  z-index: 9999;
+  .bracket {
+    font-size: 100px;
+  }
+
+  .text {
+    font-size: 50px;
+    font-weight: bold;
+  }
+}
+
+.navigate {
+  min-width: 10%;
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  right: 10%;
+  bottom: 25%;
+  z-index: 9999;
+
+  i.fas.fa-caret-left,
+  i.fas.fa-caret-right {
+    font-size: 30px;
+    border: 2px solid #fff;
+    padding: 14px 25px;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+}

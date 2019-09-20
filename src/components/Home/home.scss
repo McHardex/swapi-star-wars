@@ -1,0 +1,78 @@
+.header-container {
+  height: 80vh;
+  position: relative;
+  width: 100%;
+  background-image: url('../../images/hero-banner.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .logo {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    width: 150px;
+    height: 60px;
+    outline: none;
+  }
+
+  .header-content {
+    color: #fff;
+
+    .content-icon-wrap {
+      display: flex;
+      flex-direction: row;
+      margin: 0 auto;
+      justify-content: center;
+      align-items: center;
+      width: fit-content;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #fff;
+
+      img {
+        width: 150px;
+        height: 60px;
+      }
+
+      .directory {
+        margin-left: 20px;
+        font-size: 45px;
+        font-weight: 700;
+      }
+    }
+    .starwars-note {
+      width: 50%;
+      margin: 0 auto;
+      font-size: 28px;
+      color: #b9b9b9;
+    }
+
+    .search-box {
+      flex-direction: row;
+      width: 70%;
+      margin: 0 auto;
+      position: relative;
+      display: flex;
+      align-items: center;
+
+      input[type='search'] {
+        width: 100%;
+        padding: 15px 0;
+        padding-left: 200px;
+        font-size: 25px;
+        border-radius: 5px;
+        background: #fffefe;
+        border: none;
+      }
+
+      i.fa.fa-search {
+        position: absolute;
+        font-size: 40px;
+        left: 100px;
+        color: #696868;
+      }
+    }
+  }
+}
