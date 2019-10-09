@@ -88,7 +88,7 @@ const Header = ({ transition }) => {
 };
 
 Header.propTypes = {
-  transition: PropTypes.bool.isRequired
+  transition: PropTypes.bool
 };
 
 export default Header;
