@@ -5,3 +5,5 @@ export const GET_PEOPLE_SUCCESS = 'GET_PEOPLE_SUCCESS';
 // Get more characters
 export const PAGINATE = 'PAGINATE';
 export const PAGINATE_SUCCESS = 'PAGINATE_SUCCESS';
+
+export const FILTER_ITEMS = 'FILTER_ITEMS';

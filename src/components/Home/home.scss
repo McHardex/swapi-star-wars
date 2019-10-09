@@ -8,7 +8,7 @@
     hr.title-line {
       height: 3px;
       background: #000;
-      max-width: 15%;
+      max-width: 10%;
     }
   }
 
@@ -17,5 +17,18 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
     grid-gap: 40px 0;
     justify-items: center;
+  }
+
+  .filter {
+    display: flex;
+    align-items: center;
+    padding: 32px 0px;
+    width: 82.5%;
+    margin: 0 auto;
+
+    h3 {
+      margin: 0;
+      margin-right: 10px;
+    }
   }
 }
