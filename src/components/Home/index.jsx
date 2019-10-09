@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Header from '../shared/Header/Header';
 import HorizontalCard from '../shared/Cards/HorizontalCard';
+import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
 import { getPeople, paginate } from '../../redux/actionCreator/index';
 import Pagination from '../shared/Pagination';
 import './home.scss';
@@ -11,13 +13,15 @@ class Home extends Component {
     totalCharacters: 0,
     currentPage: 1,
     characters: [],
-    charactersPerPage: 10
+    charactersPerPage: 10,
+    filterTitle: 'filter'
   };
-  static getDerivedStateFromProps(nextProps, prevState) {
-    return {
+
+  UNSAFE_componentWillReceiveProps(nextProps) {
+    this.setState({
       characters: nextProps.characters,
       totalCharacters: nextProps.count
-    };
+    });
   }
 
   async componentDidMount() {
@@ -43,18 +47,29 @@ class Home extends Component {
     });
   };
 
+  filterItems = eventKey => {
+    const { characters } = this.props;
+    const result = characters.filter(
+      character => character.gender === eventKey
+    );
+    this.setState({
+      characters: result,
+      filterTitle: eventKey
+    });
+  };
+
   render() {
     const {
       characters,
       currentPage,
       charactersPerPage,
-      totalCharacters
+      totalCharacters,
+      filterTitle
     } = this.state;
 
     const indexOfLastPage = currentPage * charactersPerPage;
     const indexOfFirstPage = indexOfLastPage - (charactersPerPage - 1);
     const lastPage = Math.ceil(totalCharacters / charactersPerPage);
-
     return (
       <div>
         <Header />
@@ -63,6 +78,27 @@ class Home extends Component {
             <h3>Starwars Characters</h3>
             <hr className="title-line" />
           </div>
+
+          {/* fillter and grid */}
+          <div className="filter">
+            <h3>FILTER</h3>
+            <DropdownButton
+              id="dropdown-item-button"
+              title={filterTitle}
+              onSelect={this.filterItems}
+            >
+              <Dropdown.Item as="button" eventKey="male">
+                Male
+              </Dropdown.Item>
+              <Dropdown.Item as="button" eventKey="female">
+                Female
+              </Dropdown.Item>
+              <Dropdown.Item as="button" eventKey="robot">
+                Robot
+              </Dropdown.Item>
+            </DropdownButton>
+          </div>
+          {characters.length === 0 && <p>No result found</p>}
           <div className="characters">
             {characters.map(character => (
               <div key={character.name}>

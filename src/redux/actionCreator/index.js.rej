@@ -1,0 +1,4 @@
+diff a/src/redux/actionCreator/index.js b/src/redux/actionCreator/index.js	(rejected hunks)
+@@ -5 +5 @@ import {
+-  PAGINATE_SUCCESS,
++  PAGINATE_SUCCESS
