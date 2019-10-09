@@ -1,0 +1,26 @@
+.profile-cont {
+  width: 70%;
+  margin: 0 auto;
+
+  h3 {
+    padding: 15px 0px;
+  }
+
+  .profile-content {
+    width: 60%;
+    text-align: initial;
+    margin: 0 auto;
+    padding: 40px 0;
+  }
+
+  h1 {
+    width: fit-content;
+    border: 1px solid;
+    padding: 10px;
+    margin: 0 auto;
+  }
+  .cards {
+    display: flex;
+    justify-content: space-between;
+  }
+}
