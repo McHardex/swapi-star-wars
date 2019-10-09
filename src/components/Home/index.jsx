@@ -2,18 +2,21 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Header from '../shared/Header/Header';
 import HorizontalCard from '../shared/Cards/HorizontalCard';
-import { getPeople } from '../../redux/actionCreator/index';
+import { getPeople, paginate } from '../../redux/actionCreator/index';
+import Pagination from '../shared/Pagination';
 import './home.scss';
 
 class Home extends Component {
   state = {
-    count: 0,
-    characters: []
+    totalCharacters: 0,
+    currentPage: 1,
+    characters: [],
+    charactersPerPage: 10
   };
   static getDerivedStateFromProps(nextProps, prevState) {
     return {
       characters: nextProps.characters,
-      count: nextProps.count
+      totalCharacters: nextProps.count
     };
   }
 
@@ -22,9 +25,36 @@ class Home extends Component {
     await getPeople();
   }
 
+  previousPage = () => {
+    const { paginate } = this.props;
+    const { currentPage } = this.state;
+    paginate(currentPage - 1);
+    this.setState({
+      currentPage: currentPage - 1
+    });
+  };
+
+  nextPage = () => {
+    const { paginate } = this.props;
+    const { currentPage } = this.state;
+    paginate(currentPage + 1);
+    this.setState({
+      currentPage: currentPage + 1
+    });
+  };
+
   render() {
-    const { characters, count } = this.state;
-    console.log(characters, count, 'cha');
+    const {
+      characters,
+      currentPage,
+      charactersPerPage,
+      totalCharacters
+    } = this.state;
+
+    const indexOfLastPage = currentPage * charactersPerPage;
+    const indexOfFirstPage = indexOfLastPage - (charactersPerPage - 1);
+    const lastPage = Math.ceil(totalCharacters / charactersPerPage);
+
     return (
       <div>
         <Header />
@@ -45,6 +75,15 @@ class Home extends Component {
             ))}
           </div>
         </div>
+        <Pagination
+          indexOfFirstPage={indexOfFirstPage}
+          indexOfLastPage={indexOfLastPage}
+          currentPage={currentPage}
+          lastPage={lastPage}
+          prevPage={this.previousPage}
+          nextPage={this.nextPage}
+          totalCharacters={totalCharacters}
+        />
       </div>
     );
   }
@@ -56,7 +95,8 @@ const mapStateToProps = ({ people }) => ({
 });
 
 const mapDispatchToProps = {
-  getPeople
+  getPeople,
+  paginate
 };
 
 export default connect(
