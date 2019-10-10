@@ -1,62 +1,85 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import {
+  fetchCharacterById,
+  fetchCharacterPlanet
+} from '../../redux/actionCreator/people';
 import Header from '../shared/Header/Header';
 import VerticalCard from '../shared/Cards/VerticalCard';
 import './index.scss';
 
-const Profile = () => {
+const Profile = ({
+  match,
+  fetchCharacterById,
+  fetchCharacterPlanet,
+  character,
+  planet
+}) => {
+  useEffect(() => {
+    const {
+      params: { id }
+    } = match;
+    fetchCharacterById(id);
+    fetchCharacterPlanet(character.homeworld);
+  }, [fetchCharacterById, fetchCharacterPlanet, match, character.homeworld]);
+
   return (
     <div>
-      <Header transition />
+      <Header transition name={character.name} />
       <div className="profile-cont">
         <div className="profile-content">
-          <h3>Correlian Scout</h3>
-          <p>
-            Contrary to popular belief, Lorem Ipsum is not simply random text.
-            It has roots in a piece of classical Latin literature from 45 BC,
-            making it over 2000 years old. Richard McClintock, a Latin professor
-            at Hampden-Sydney College in Virginia, looked up one of the more
-            obscure Latin words, consectetur, from a Lorem Ipsum passage, and
-            going through the c ites of the word in classical literature,
-            discovered the undoubtable source. Lorem Ipsum comes from sections
-            1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes
-            of Good and Evil) by Cicero, written in 45 BC. This book is a
-            treatise on the theory of ethics, very popular during the
-            Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit
-            amet..", comes from a line in section 1.10.32.
-          </p>
-
-          <p>
-            Contrary to popular belief, Lorem Ipsum is not simply random text.
-            It has roots in a piece of classical Latin literature from 45 BC,
-            making it over 2000 years old. Richard McClintock, a Latin professor
-            at Hampden-Sydney College in Virginia, looked up one of the more
-            obscure Latin words, consectetur, from a Lorem Ipsum passage, and
-            going through the c ites of the word in classical literature,
-            discovered the undoubtable source. Lorem Ipsum comes from sections
-            1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes
-            of Good and Evil) by Cicero, written in 45 BC. This book is a
-            treatise on the theory of ethics, very popular during the
-            Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit
-            amet..", comes from a line in section 1.10.32.
-          </p>
-
-          <p>
-            Contrary to popular belief, Lorem Ipsum is not simply random text.
-            It has roots in a piece of classical Latin literature from 45 BC,
-            making it over 2000 years old. Richard McClintock, a Latin professor
-            at Hampden-Sydney College in Virginia, looked up one of the more
-            obscure Latin words, consectetur, from a Lorem Ipsum passage, and
-            going through the c ites of the word in classical literature,
-            discovered the undoubtable source. Lorem Ipsum comes from sections
-            1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes
-            of Good and Evil) by Cicero, written in 45 BC. This book is a
-            treatise on the theory of ethics, very popular during the
-            Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit
-            amet..", comes from a line in section 1.10.32.
-          </p>
+          <h1 className="name">{character.name}</h1>
+          <h3>
+            Height: <span>{character.height}</span>
+          </h3>
+          <h3>
+            Mass: <span>{character.mass}</span>
+          </h3>
+          <h3>
+            Hair Color: <span>{character.hair_color}</span>
+          </h3>
+          <h3>
+            Skin Color: <span>{character.skin_color}</span>
+          </h3>
+          <h3>
+            Eye Color: <span>{character.eye_color}</span>
+          </h3>
+          <h3>
+            Gender: <span>{character.gender}</span>
+          </h3>
+        </div>
+        <div className="profile-content">
+          <h1 className="name">My Planet</h1>
+          <h3>
+            Name: <span>{planet.name}</span>
+          </h3>
+          <h3>
+            Climate: <span>{planet.climate}</span>
+          </h3>
+          <h3>
+            Diameter: <span>{planet.diameter}</span>
+          </h3>
+          <h3>
+            Gravity: <span>{planet.gravity}</span>
+          </h3>
+          <h3>
+            Orbital Period: <span>{planet.orbital_period}</span>
+          </h3>
+          <h3>
+            Population: <span>{planet.population}</span>
+          </h3>
+          <h3>
+            Rotation Period: <span>{planet.rotation_period}</span>
+          </h3>
+          <h3>
+            Surface Water: <span>{planet.surface_water}</span>
+          </h3>
+          <h3>
+            Terrain: <span>{planet.terrain}</span>
+          </h3>
         </div>
         <div className="recently-viewed">
-          <h1>Recently viewed Starships</h1>
+          <h1 className="title">Recently viewed Starships</h1>
           <hr />
           <div className="cards">
             <VerticalCard />
@@ -69,4 +92,17 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+const mapStateToProps = ({ people }) => ({
+  character: people.character,
+  planet: people.planet
+});
+
+const mapDispatchToProps = {
+  fetchCharacterById,
+  fetchCharacterPlanet
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Profile);

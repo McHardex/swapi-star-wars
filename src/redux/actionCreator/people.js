@@ -4,7 +4,11 @@ import {
   PAGINATE,
   PAGINATE_SUCCESS,
   SEARCH,
-  SEARCH_SUCCESS
+  SEARCH_SUCCESS,
+  FETCH_CHARACTER,
+  FETCH_CHARACTER_SUCCESS,
+  FETCH_CHARACTER_PLANET,
+  FETCH_CHARACTER_PLANET_SUCCESS
 } from '../constants/actionTypes';
 
 export const getPeople = () => ({
@@ -35,4 +39,24 @@ export const searchByName = value => ({
 export const searchSuccess = result => ({
   type: SEARCH_SUCCESS,
   result
+});
+
+export const fetchCharacterById = id => ({
+  type: FETCH_CHARACTER,
+  id
+});
+
+export const fetchCharacterByIdSuccess = character => ({
+  type: FETCH_CHARACTER_SUCCESS,
+  character
+});
+
+export const fetchCharacterPlanet = url => ({
+  type: FETCH_CHARACTER_PLANET,
+  url
+});
+
+export const fetchCharacterPlanetSuccess = planet => ({
+  type: FETCH_CHARACTER_PLANET_SUCCESS,
+  planet
 });

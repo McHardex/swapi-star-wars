@@ -13,11 +13,13 @@
     padding: 40px 0;
   }
 
-  h1 {
-    width: fit-content;
-    border: 1px solid;
-    padding: 10px;
-    margin: 0 auto;
+  .recently-viewed {
+    .title {
+      width: fit-content;
+      border: 1px solid;
+      padding: 10px;
+      margin: 0 auto;
+    }
   }
   .cards {
     display: flex;

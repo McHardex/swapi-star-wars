@@ -4,9 +4,18 @@ import starWars from '../../services/index';
 import {
   getPeopleSuccess,
   paginateSuccess,
-  searchSuccess
-} from '../actionCreator/index';
-import { GET_PEOPLE, PAGINATE, SEARCH } from '../constants/actionTypes';
+  searchSuccess,
+  fetchCharacterByIdSuccess,
+  fetchCharacterPlanetSuccess
+} from '../actionCreator/people';
+
+import {
+  GET_PEOPLE,
+  PAGINATE,
+  SEARCH,
+  FETCH_CHARACTER,
+  FETCH_CHARACTER_PLANET
+} from '../constants/actionTypes';
 
 export function* fetchStarWarsCharacters() {
   try {
@@ -54,4 +63,32 @@ export function* searchItems(payload) {
 
 export function* watchSearchItems() {
   yield takeLatest(SEARCH, searchItems);
+}
+
+export function* fetchSingleCharacter(character) {
+  try {
+    const response = yield call(starWars.getSingleCharacter, character.id);
+    const { data } = response;
+    yield put(fetchCharacterByIdSuccess(data));
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export function* watchFetchSingleCharacter() {
+  yield takeLatest(FETCH_CHARACTER, fetchSingleCharacter);
+}
+
+export function* fetchSingleCharacterPlanet(character) {
+  try {
+    const response = yield call(starWars.getPlanet, character.url);
+    const { data } = response;
+    yield put(fetchCharacterPlanetSuccess(data));
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export function* watchFetchSingleCharacterPlanet() {
+  yield takeLatest(FETCH_CHARACTER_PLANET, fetchSingleCharacterPlanet);
 }
