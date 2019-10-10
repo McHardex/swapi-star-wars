@@ -1,7 +1,0 @@
-diff a/src/redux/middleware/index.js b/src/redux/middleware/index.js	(rejected hunks)
-@@ -4 +4 @@ import {
--  watchFetchMoreStarWarsCharacters,
-+  watchFetchMoreStarWarsCharacters
-@@ -10 +10 @@ export default function* rootSaga() {
--    watchFetchMoreStarWarsCharacters(),
-+    watchFetchMoreStarWarsCharacters()

@@ -4,7 +4,7 @@ import Header from '../shared/Header/Header';
 import HorizontalCard from '../shared/Cards/HorizontalCard';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
-import { getPeople, paginate } from '../../redux/actionCreator/index';
+import { getPeople, paginate } from '../../redux/actionCreator/people';
 import Pagination from '../shared/Pagination';
 import './home.scss';
 
@@ -72,7 +72,7 @@ class Home extends Component {
     const lastPage = Math.ceil(totalCharacters / charactersPerPage);
     return (
       <div>
-        <Header />
+        <Header page="characters" />
         <div className="char-wrapper">
           <div className="character-title">
             <h3>Starwars Characters</h3>

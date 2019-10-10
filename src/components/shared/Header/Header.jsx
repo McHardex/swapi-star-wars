@@ -1,21 +1,22 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import Carousel from 'react-bootstrap/Carousel';
 import logo from '../../../images/logo.png';
 import starship1 from '../../../images/starship-1.jpg';
 import starship3 from '../../../images/starship-3.jpg';
 import starship4 from '../../../images/starship-4.jpg';
 import starship5 from '../../../images/starship-5.jpg';
+
+import { searchByName } from '../../../redux/actionCreator/people';
 import './header.scss';
 
-const Header = ({ transition }) => {
-  // const [index, setIndex] = useState(0);
-  // const [direction, setDirection] = useState(null);
+const Header = ({ transition, searchByName, page }) => {
+  const search = ({ target }) => {
+    if (page === 'characters') {
+      searchByName(target.value);
+    }
+  };
 
-  // const handleSelect = (selectedIndex, e) => {
-  //   setIndex(selectedIndex);
-  //   setDirection(e.direction);
-  // };
   return (
     <div className="header-container">
       <img className="logo" src={logo} alt="star-wars-icon" />
@@ -36,7 +37,11 @@ const Header = ({ transition }) => {
             </p>
           </div>
           <div className="search-box">
-            <input type="search" placeholder="Enter a search term" />
+            <input
+              type="search"
+              placeholder="Enter a search term"
+              onChange={search}
+            />
             <i className="fa fa-search"></i>
           </div>
         </div>
@@ -87,8 +92,11 @@ const Header = ({ transition }) => {
   );
 };
 
-Header.propTypes = {
-  transition: PropTypes.bool
+const mapDispatchToProps = {
+  searchByName
 };
 
-export default Header;
+export default connect(
+  null,
+  mapDispatchToProps
+)(Header);

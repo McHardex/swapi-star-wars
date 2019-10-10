@@ -7,3 +7,6 @@ export const PAGINATE = 'PAGINATE';
 export const PAGINATE_SUCCESS = 'PAGINATE_SUCCESS';
 
 export const FILTER_ITEMS = 'FILTER_ITEMS';
+
+export const SEARCH = 'SEARCH';
+export const SEARCH_SUCCESS = 'SEARCH_SUCCESS';
