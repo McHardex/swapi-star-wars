@@ -1,4 +1,8 @@
-import { GET_PEOPLE_SUCCESS, PAGINATE_SUCCESS } from '../constants/actionTypes';
+import {
+  GET_PEOPLE_SUCCESS,
+  PAGINATE_SUCCESS,
+  SEARCH_SUCCESS
+} from '../constants/actionTypes';
 
 const initialState = {
   characters: [],
@@ -11,6 +15,8 @@ const people = (state = initialState, action) => {
       return { ...state, characters: action.people, count: action.count };
     case PAGINATE_SUCCESS:
       return { ...state, characters: action.people };
+    case SEARCH_SUCCESS:
+      return { ...state, characters: action.result };
     default:
       return state;
   }
