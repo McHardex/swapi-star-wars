@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Header from '../shared/Header/Header';
 import VerticalCard from '../shared/Cards/VerticalCard';
+import StarWarTitle from '../shared/StarWar/StarwarTitle';
 import { getPlanets, paginatePlanet } from '../../redux/actionCreator/planet';
 import Pagination from '../shared/Pagination';
 import planet1 from '../../images/planet-1.jpg';
@@ -60,10 +61,7 @@ class Planets extends Component {
       <div>
         <Header page="planet" />
         <div className="planet-wrapper">
-          <div className="planet-title">
-            <h3>Popular Planets</h3>
-            <hr className="title-line" />
-          </div>
+          <StarWarTitle header="Popular Planets" />
           <div className="planets">
             {planets.map(planet => (
               <div key={planet.name}>
