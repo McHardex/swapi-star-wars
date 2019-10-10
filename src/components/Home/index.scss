@@ -1,4 +1,23 @@
 .home {
+  .vm-wrap {
+    margin: 40px;
+    .view-more {
+      font-size: 15px;
+      padding: 15px 12%;
+      width: 100%;
+      border: 2px solid #000;
+      border-radius: 5px;
+      color: #000;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .view-more:hover {
+      background: #000;
+      color: #fff;
+      transition: 0.2s;
+    }
+  }
+
   .home-content-wrap {
     width: 85%;
     margin: 0 auto;
@@ -14,6 +33,33 @@
       grid-template-columns: repeat(2, minmax(0, 1fr));
       grid-gap: 40px 0;
       justify-items: center;
+    }
+
+    .planet {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-gap: 40px 0;
+      justify-items: center;
+
+      .card {
+        border: none;
+        position: relative;
+
+        .card-body {
+          border: none;
+          width: 100%;
+          position: absolute;
+          bottom: 0;
+          background: #00000057;
+          color: #fff;
+          box-shadow: 0 1px 39px #bbb8b8;
+          border-top: 3px solid #bbb8b86b;
+
+          .card-title {
+            text-align: center;
+          }
+        }
+      }
     }
   }
 }

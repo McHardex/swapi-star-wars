@@ -1,46 +1,50 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import Header from '../shared/Header/Header';
 import VerticalCard from '../shared/Cards/VerticalCard';
 import HorizontalCard from '../shared/Cards/HorizontalCard';
+import Card from 'react-bootstrap/Card';
 import StarWarTitle from '../shared/StarWar/StarwarTitle';
 
-import starship1 from '../../images/starship-1.jpg';
 import { getStarship } from '../../redux/actionCreator/starship';
 import { getPeople } from '../../redux/actionCreator/people';
+import { getPlanets } from '../../redux/actionCreator/planet';
 import './index.scss';
+import starship1 from '../../images/starship-1.jpg';
+import planet1 from '../../images/planet-1.jpg';
 
 class Home extends Component {
   state = {
     starships: [],
-    characters: []
+    characters: [],
+    planets: []
   };
 
   UNSAFE_componentWillReceiveProps(nextProps) {
     this.setState({
-      starships: nextProps.starships,
-      characters: nextProps.characters
+      planets: nextProps.planetLists && nextProps.planetLists.slice(0, 3),
+      starships: nextProps.starships.slice(0, 6),
+      characters: nextProps.characters.slice(0, 4)
     });
   }
 
   async componentDidMount() {
-    const { getStarship, getPeople } = this.props;
+    const { getStarship, getPeople, getPlanets } = this.props;
     await getStarship();
     getPeople();
+    getPlanets();
   }
 
   render() {
-    const { starships, characters } = this.state;
-    const limitStarships = starships.slice(0, 6);
-    const limitCharacters = characters.slice(0, 4);
-
+    const { starships, characters, planets } = this.state;
     return (
       <div className="home">
         <Header page="starship" />
         <div className="home-content-wrap">
           <StarWarTitle header="Popular Starships" />
           <div className="starship">
-            {limitStarships.map(starship => (
+            {starships.map(starship => (
               <div key={starship.name}>
                 <VerticalCard
                   width="30rem"
@@ -54,10 +58,29 @@ class Home extends Component {
               </div>
             ))}
           </div>
+          <div className="vm-wrap">
+            <Link to="/starships" className="view-more">
+              View More
+            </Link>
+          </div>
           <StarWarTitle header="Popular Planets" />
+          {/* <div className="planet">
+            {
+              planets.length > 0 && planets.map(planet => (
+                <div key={planet.name}>
+                  <Card style={{ width: "25rem" }}>
+                    <Card.Img variant="top" src={planet1} />
+                    <Card.Body>
+                      <Card.Title>{planet.name}</Card.Title>
+                    </Card.Body>
+                  </Card>
+                </div>
+              ))
+            }
+          </div> */}
           <StarWarTitle header="Popular Characters" />
           <div className="characters">
-            {limitCharacters.map((character, i) => (
+            {characters.map((character, i) => (
               <div key={character.name}>
                 <HorizontalCard
                   width="40rem"
@@ -68,20 +91,27 @@ class Home extends Component {
               </div>
             ))}
           </div>
+          <div className="vm-wrap">
+            <Link to="/characters" className="view-more">
+              View More
+            </Link>
+          </div>
         </div>
       </div>
     );
   }
 }
 
-const mapStateToProps = ({ people, starship }) => ({
+const mapStateToProps = ({ people, starship, planets }) => ({
   starships: starship.starships,
-  characters: people.characters
+  characters: people.characters,
+  planetLists: planets.planets
 });
 
 const mapDispatchToProps = {
   getStarship,
-  getPeople
+  getPeople,
+  getPlanets
 };
 
 export default connect(
