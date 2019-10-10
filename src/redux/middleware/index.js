@@ -7,12 +7,21 @@ import {
   watchFetchSingleCharacterPlanet
 } from './peopleSaga';
 
+import {
+  watchFetchPlanets,
+  watchPaginatePlanets,
+  watchSearchPlanet
+} from './planetsSaga';
+
 export default function* rootSaga() {
   yield all([
     watchFetchStarWarsCharacters(),
     watchFetchMoreStarWarsCharacters(),
     watchSearchItems(),
     watchFetchSingleCharacter(),
-    watchFetchSingleCharacterPlanet()
+    watchFetchSingleCharacterPlanet(),
+    watchFetchPlanets(),
+    watchPaginatePlanets(),
+    watchSearchPlanet()
   ]);
 }

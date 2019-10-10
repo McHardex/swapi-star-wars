@@ -1,0 +1,21 @@
+.planet-wrapper {
+  width: 90%;
+  margin: 0 auto;
+
+  .planet-title {
+    padding: 30px 0;
+
+    hr.title-line {
+      height: 3px;
+      background: #000;
+      max-width: 10%;
+    }
+  }
+
+  .planets {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-gap: 40px 0;
+    justify-items: center;
+  }
+}
