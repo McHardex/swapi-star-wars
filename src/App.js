@@ -8,7 +8,7 @@ const App = () => {
   return (
     <div className="App">
       <Route exact path="/" component={Home} />
-      <Route path="/profile" component={Profile} />
+      <Route path="/profile/:id" component={Profile} />
     </div>
   );
 };

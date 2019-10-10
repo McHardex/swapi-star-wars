@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import Header from '../shared/Header/Header';
 import HorizontalCard from '../shared/Cards/HorizontalCard';
 import Dropdown from 'react-bootstrap/Dropdown';
@@ -100,13 +101,15 @@ class Home extends Component {
           </div>
           {characters.length === 0 && <p>No result found</p>}
           <div className="characters">
-            {characters.map(character => (
+            {characters.map((character, i) => (
               <div key={character.name}>
-                <HorizontalCard
-                  title={character.name}
-                  birthYear={character.birth_year}
-                  gender={character.gender}
-                />
+                <Link to={`profile/${i + 1}`}>
+                  <HorizontalCard
+                    title={character.name}
+                    birthYear={character.birth_year}
+                    gender={character.gender}
+                  />
+                </Link>
               </div>
             ))}
           </div>

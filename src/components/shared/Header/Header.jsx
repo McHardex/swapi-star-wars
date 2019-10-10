@@ -10,7 +10,7 @@ import starship5 from '../../../images/starship-5.jpg';
 import { searchByName } from '../../../redux/actionCreator/people';
 import './header.scss';
 
-const Header = ({ transition, searchByName, page }) => {
+const Header = ({ transition, searchByName, page, name }) => {
   const search = ({ target }) => {
     if (page === 'characters') {
       searchByName(target.value);
@@ -79,7 +79,7 @@ const Header = ({ transition, searchByName, page }) => {
           </Carousel>
           <div className="caption">
             <span className="bracket">[</span>
-            <span className="text">colian jade</span>
+            <span className="text">{name}</span>
             <span className="bracket">]</span>
           </div>
           <div className="navigate">
