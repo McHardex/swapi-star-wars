@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Header from '../shared/Header/Header';
 import VerticalCard from '../shared/Cards/VerticalCard';
+import StarWarTitle from '../shared/StarWar/StarwarTitle';
 import {
   getStarship,
   paginateStarship
@@ -20,7 +21,7 @@ class StarShip extends Component {
 
   UNSAFE_componentWillReceiveProps(nextProps) {
     this.setState({
-      starships: nextProps.starshipsList,
+      starships: nextProps.starships,
       totalStarships: nextProps.count
     });
   }
@@ -63,10 +64,7 @@ class StarShip extends Component {
       <div>
         <Header page="starship" />
         <div className="starship-wrapper">
-          <div className="starship-title">
-            <h3>Popular Starships</h3>
-            <hr className="title-line" />
-          </div>
+          <StarWarTitle header="Popular Starships" />
           <div className="starship">
             {starships.map(starship => (
               <div key={starship.name}>
@@ -98,7 +96,7 @@ class StarShip extends Component {
 }
 
 const mapStateToProps = ({ starship }) => ({
-  starshipsList: starship.starships,
+  starships: starship.starships,
   count: starship.count
 });
 

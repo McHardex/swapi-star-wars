@@ -1,141 +1,87 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import Header from '../shared/Header/Header';
+import VerticalCard from '../shared/Cards/VerticalCard';
 import HorizontalCard from '../shared/Cards/HorizontalCard';
-import Dropdown from 'react-bootstrap/Dropdown';
-import DropdownButton from 'react-bootstrap/DropdownButton';
-import { getPeople, paginate } from '../../redux/actionCreator/people';
-import Pagination from '../shared/Pagination';
-import './home.scss';
+import StarWarTitle from '../shared/StarWar/StarwarTitle';
+
+import starship1 from '../../images/starship-1.jpg';
+import { getStarship } from '../../redux/actionCreator/starship';
+import { getPeople } from '../../redux/actionCreator/people';
+import './index.scss';
 
 class Home extends Component {
   state = {
-    totalCharacters: 0,
-    currentPage: 1,
-    characters: [],
-    charactersPerPage: 10,
-    filterTitle: 'filter'
+    starships: [],
+    characters: []
   };
 
   UNSAFE_componentWillReceiveProps(nextProps) {
     this.setState({
-      characters: nextProps.characters,
-      totalCharacters: nextProps.count
+      starships: nextProps.starships,
+      characters: nextProps.characters
     });
   }
 
   async componentDidMount() {
-    const { getPeople } = this.props;
-    await getPeople();
+    const { getStarship, getPeople } = this.props;
+    await getStarship();
+    getPeople();
   }
 
-  previousPage = () => {
-    const { paginate } = this.props;
-    const { currentPage } = this.state;
-    paginate(currentPage - 1);
-    this.setState({
-      currentPage: currentPage - 1
-    });
-  };
-
-  nextPage = () => {
-    const { paginate } = this.props;
-    const { currentPage } = this.state;
-    paginate(currentPage + 1);
-    this.setState({
-      currentPage: currentPage + 1
-    });
-  };
-
-  filterItems = eventKey => {
-    const { characters } = this.props;
-    const result = characters.filter(
-      character => character.gender === eventKey
-    );
-    this.setState({
-      characters: result,
-      filterTitle: eventKey
-    });
-  };
-
   render() {
-    const {
-      characters,
-      currentPage,
-      charactersPerPage,
-      totalCharacters,
-      filterTitle
-    } = this.state;
+    const { starships, characters } = this.state;
+    const limitStarships = starships.slice(0, 6);
+    const limitCharacters = characters.slice(0, 4);
 
-    const indexOfLastPage = currentPage * charactersPerPage;
-    const indexOfFirstPage = indexOfLastPage - (charactersPerPage - 1);
-    const lastPage = Math.ceil(totalCharacters / charactersPerPage);
     return (
-      <div>
-        <Header page="characters" />
-        <div className="char-wrapper">
-          <div className="character-title">
-            <h3>Starwars Characters</h3>
-            <hr className="title-line" />
+      <div className="home">
+        <Header page="starship" />
+        <div className="home-content-wrap">
+          <StarWarTitle header="Popular Starships" />
+          <div className="starship">
+            {limitStarships.map(starship => (
+              <div key={starship.name}>
+                <VerticalCard
+                  width="30rem"
+                  image={starship1}
+                  title={starship.name}
+                  item1Key="Model"
+                  item2Key="Cargo capacity"
+                  item1={starship.model}
+                  item2={starship.cargo_capacity}
+                />
+              </div>
+            ))}
           </div>
-
-          {/* fillter and grid */}
-          <div className="filter">
-            <h3>FILTER</h3>
-            <DropdownButton
-              id="dropdown-item-button"
-              title={filterTitle}
-              onSelect={this.filterItems}
-            >
-              <Dropdown.Item as="button" eventKey="male">
-                Male
-              </Dropdown.Item>
-              <Dropdown.Item as="button" eventKey="female">
-                Female
-              </Dropdown.Item>
-              <Dropdown.Item as="button" eventKey="robot">
-                Robot
-              </Dropdown.Item>
-            </DropdownButton>
-          </div>
-          {characters.length === 0 && <p>No result found</p>}
+          <StarWarTitle header="Popular Planets" />
+          <StarWarTitle header="Popular Characters" />
           <div className="characters">
-            {characters.map((character, i) => (
+            {limitCharacters.map((character, i) => (
               <div key={character.name}>
-                <Link to={`profile/${i + 1}`}>
-                  <HorizontalCard
-                    title={character.name}
-                    birthYear={character.birth_year}
-                    gender={character.gender}
-                  />
-                </Link>
+                <HorizontalCard
+                  width="40rem"
+                  title={character.name}
+                  birthYear={character.birth_year}
+                  gender={character.gender}
+                />
               </div>
             ))}
           </div>
         </div>
-        <Pagination
-          indexOfFirstPage={indexOfFirstPage}
-          indexOfLastPage={indexOfLastPage}
-          currentPage={currentPage}
-          lastPage={lastPage}
-          prevPage={this.previousPage}
-          nextPage={this.nextPage}
-          totalCharacters={totalCharacters}
-        />
       </div>
     );
   }
 }
 
-const mapStateToProps = ({ people }) => ({
-  characters: people.characters,
-  count: people.count
+const mapStateToProps = ({ people, starship }) => ({
+  starships: starship.starships,
+  characters: people.characters
 });
 
 const mapDispatchToProps = {
-  getPeople,
-  paginate
+  getStarship,
+  getPeople
 };
 
 export default connect(

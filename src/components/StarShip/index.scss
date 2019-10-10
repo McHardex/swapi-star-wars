@@ -2,16 +2,6 @@
   width: 90%;
   margin: 0 auto;
 
-  .starship-title {
-    padding: 30px 0;
-
-    hr.title-line {
-      height: 3px;
-      background: #000;
-      max-width: 5%;
-    }
-  }
-
   .starship {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
