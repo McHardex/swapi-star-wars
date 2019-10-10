@@ -10,6 +10,13 @@ import {
 } from '../actionCreator/people';
 
 import {
+  loadingContent,
+  contentLoaded,
+  searchResultLoading,
+  searchResultLoaded
+} from '../actionCreator/loader';
+
+import {
   GET_PEOPLE,
   PAGINATE,
   SEARCH,
@@ -18,12 +25,14 @@ import {
 } from '../constants/actionTypes';
 
 export function* fetchStarWarsCharacters() {
+  yield put(loadingContent());
   try {
     const response = yield call(characters.getPeople);
     const {
       data: { results, count }
     } = response;
     yield put(getPeopleSuccess(results, count));
+    yield put(contentLoaded());
   } catch (error) {
     console.log(error);
   }
@@ -34,12 +43,14 @@ export function* watchFetchStarWarsCharacters() {
 }
 
 export function* fetchMoreStarWarsCharacters(payload) {
+  yield put(loadingContent());
   try {
     const response = yield call(characters.pagination, payload.pageNumber);
     const {
       data: { results }
     } = response;
     yield put(paginateSuccess(results));
+    yield put(contentLoaded());
   } catch (error) {
     console.log(error);
   }
@@ -50,12 +61,14 @@ export function* watchFetchMoreStarWarsCharacters() {
 }
 
 export function* searchItems(payload) {
+  yield put(searchResultLoading());
   try {
     const response = yield call(characters.search, payload.value);
     const {
       data: { results }
     } = response;
     yield put(searchSuccess(results));
+    yield put(searchResultLoaded());
   } catch (error) {
     console.log(error);
   }
@@ -66,10 +79,12 @@ export function* watchSearchItems() {
 }
 
 export function* fetchSingleCharacter(character) {
+  yield put(loadingContent());
   try {
     const response = yield call(characters.getSingleCharacter, character.id);
     const { data } = response;
     yield put(fetchCharacterByIdSuccess(data));
+    yield put(contentLoaded());
   } catch (error) {
     console.log(error);
   }
@@ -80,10 +95,12 @@ export function* watchFetchSingleCharacter() {
 }
 
 export function* fetchSingleCharacterPlanet(character) {
+  yield put(loadingContent());
   try {
     const response = yield call(characters.getPlanet, character.url);
     const { data } = response;
     yield put(fetchCharacterPlanetSuccess(data));
+    yield put(contentLoaded());
   } catch (error) {
     console.log(error);
   }
