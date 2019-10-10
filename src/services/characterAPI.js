@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-class starWars {
+class characters {
   static getPeople() {
     return axios.get('https://swapi.co/api/people/');
   }
@@ -22,4 +22,4 @@ class starWars {
   }
 }
 
-export default starWars;
+export default characters;

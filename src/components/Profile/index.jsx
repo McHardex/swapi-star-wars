@@ -29,62 +29,62 @@ const Profile = ({
       <div className="profile-cont">
         <div className="profile-content">
           <h1 className="name">{character.name}</h1>
-          <h3>
+          <p>
             Height: <span>{character.height}</span>
-          </h3>
-          <h3>
+          </p>
+          <p>
             Mass: <span>{character.mass}</span>
-          </h3>
-          <h3>
+          </p>
+          <p>
             Hair Color: <span>{character.hair_color}</span>
-          </h3>
-          <h3>
+          </p>
+          <p>
             Skin Color: <span>{character.skin_color}</span>
-          </h3>
-          <h3>
+          </p>
+          <p>
             Eye Color: <span>{character.eye_color}</span>
-          </h3>
-          <h3>
+          </p>
+          <p>
             Gender: <span>{character.gender}</span>
-          </h3>
+          </p>
         </div>
         <div className="profile-content">
           <h1 className="name">My Planet</h1>
-          <h3>
+          <p>
             Name: <span>{planet.name}</span>
-          </h3>
-          <h3>
+          </p>
+          <p>
             Climate: <span>{planet.climate}</span>
-          </h3>
-          <h3>
+          </p>
+          <p>
             Diameter: <span>{planet.diameter}</span>
-          </h3>
-          <h3>
+          </p>
+          <p>
             Gravity: <span>{planet.gravity}</span>
-          </h3>
-          <h3>
+          </p>
+          <p>
             Orbital Period: <span>{planet.orbital_period}</span>
-          </h3>
-          <h3>
+          </p>
+          <p>
             Population: <span>{planet.population}</span>
-          </h3>
-          <h3>
+          </p>
+          <p>
             Rotation Period: <span>{planet.rotation_period}</span>
-          </h3>
-          <h3>
+          </p>
+          <p>
             Surface Water: <span>{planet.surface_water}</span>
-          </h3>
-          <h3>
+          </p>
+          <p>
             Terrain: <span>{planet.terrain}</span>
-          </h3>
+          </p>
         </div>
         <div className="recently-viewed">
           <h1 className="title">Recently viewed Starships</h1>
           <hr />
           <div className="cards">
-            <VerticalCard />
-            <VerticalCard />
-            <VerticalCard />
+            <VerticalCard width="25rem" />
+            <VerticalCard width="25rem" />
+            <VerticalCard width="25rem" />
           </div>
         </div>
       </div>

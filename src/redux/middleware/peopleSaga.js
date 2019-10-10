@@ -1,5 +1,5 @@
 import { put, takeLatest, call } from 'redux-saga/effects';
-import starWars from '../../services/index';
+import characters from '../../services/characterAPI';
 
 import {
   getPeopleSuccess,
@@ -19,7 +19,7 @@ import {
 
 export function* fetchStarWarsCharacters() {
   try {
-    const response = yield call(starWars.getPeople);
+    const response = yield call(characters.getPeople);
     const {
       data: { results, count }
     } = response;
@@ -35,7 +35,7 @@ export function* watchFetchStarWarsCharacters() {
 
 export function* fetchMoreStarWarsCharacters(payload) {
   try {
-    const response = yield call(starWars.pagination, payload.pageNumber);
+    const response = yield call(characters.pagination, payload.pageNumber);
     const {
       data: { results }
     } = response;
@@ -51,7 +51,7 @@ export function* watchFetchMoreStarWarsCharacters() {
 
 export function* searchItems(payload) {
   try {
-    const response = yield call(starWars.search, payload.value);
+    const response = yield call(characters.search, payload.value);
     const {
       data: { results }
     } = response;
@@ -67,7 +67,7 @@ export function* watchSearchItems() {
 
 export function* fetchSingleCharacter(character) {
   try {
-    const response = yield call(starWars.getSingleCharacter, character.id);
+    const response = yield call(characters.getSingleCharacter, character.id);
     const { data } = response;
     yield put(fetchCharacterByIdSuccess(data));
   } catch (error) {
@@ -81,7 +81,7 @@ export function* watchFetchSingleCharacter() {
 
 export function* fetchSingleCharacterPlanet(character) {
   try {
-    const response = yield call(starWars.getPlanet, character.url);
+    const response = yield call(characters.getPlanet, character.url);
     const { data } = response;
     yield put(fetchCharacterPlanetSuccess(data));
   } catch (error) {
