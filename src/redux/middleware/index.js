@@ -13,6 +13,12 @@ import {
   watchSearchPlanet
 } from './planetsSaga';
 
+import {
+  watchFetchStarShips,
+  watchPaginateStarShips,
+  watchSearchStarShips
+} from './starshipSaga';
+
 export default function* rootSaga() {
   yield all([
     watchFetchStarWarsCharacters(),
@@ -22,6 +28,9 @@ export default function* rootSaga() {
     watchFetchSingleCharacterPlanet(),
     watchFetchPlanets(),
     watchPaginatePlanets(),
-    watchSearchPlanet()
+    watchSearchPlanet(),
+    watchFetchStarShips(),
+    watchPaginateStarShips(),
+    watchSearchStarShips()
   ]);
 }

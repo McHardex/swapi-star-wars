@@ -3,13 +3,25 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import './index.scss';
 
-const VerticalCard = ({ name, population, temperature, width, img }) => (
+const VerticalCard = ({
+  title,
+  item1Key,
+  item2Key,
+  item1,
+  item2,
+  width,
+  image
+}) => (
   <Card style={{ width }}>
-    <Card.Img variant="top" src={img} />
+    <Card.Img variant="top" src={image} />
     <Card.Body>
-      <Card.Title>{name}</Card.Title>
-      <Card.Text>Population: {population}</Card.Text>
-      <Card.Text>Temperature: {temperature}</Card.Text>
+      <Card.Title>{title}</Card.Title>
+      <Card.Text>
+        {item1Key}: {item1}
+      </Card.Text>
+      <Card.Text>
+        {item2Key}: {item2}
+      </Card.Text>
       <Button variant="dark">
         Read More <i className="fas fa-arrow-right"></i>
       </Button>

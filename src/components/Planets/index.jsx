@@ -58,7 +58,7 @@ class Planets extends Component {
     const lastPage = Math.ceil(totalPlanets / planetsPerPerPage);
     return (
       <div>
-        <Header page="starwars" />
+        <Header page="planet" />
         <div className="planet-wrapper">
           <div className="planet-title">
             <h3>Popular Planets</h3>
@@ -69,10 +69,12 @@ class Planets extends Component {
               <div key={planet.name}>
                 <VerticalCard
                   width="30rem"
-                  img={planet1}
-                  name={planet.name}
-                  population={planet.population}
-                  temperature={planet.climate}
+                  image={planet1}
+                  title={planet.name}
+                  item1Key="Population"
+                  item2Key="Temperature"
+                  item1={planet.population}
+                  item2={planet.climate}
                 />
               </div>
             ))}

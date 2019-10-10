@@ -9,21 +9,24 @@ import starship5 from '../../../images/starship-5.jpg';
 
 import { searchByName } from '../../../redux/actionCreator/people';
 import { searchPlanetByName } from '../../../redux/actionCreator/planet';
+import { searchStarshipByName } from '../../../redux/actionCreator/starship';
 import './header.scss';
 
 const Header = ({
   transition,
   searchByName,
   searchPlanetByName,
+  searchStarshipByName,
   page,
   name
 }) => {
   const search = ({ target }) => {
-    if (page === 'characters') {
-      searchByName(target.value);
-    }
-    if (page === 'starwars') {
+    if (page === 'starship') {
+      searchStarshipByName(target.value);
+    } else if (page === 'planet') {
       searchPlanetByName(target.value);
+    } else {
+      searchByName(target.value);
     }
   };
 
@@ -104,7 +107,8 @@ const Header = ({
 
 const mapDispatchToProps = {
   searchByName,
-  searchPlanetByName
+  searchPlanetByName,
+  searchStarshipByName
 };
 
 export default connect(
