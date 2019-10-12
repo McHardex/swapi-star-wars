@@ -8,6 +8,7 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import { getPeople, paginate } from '../../redux/actionCreator/people';
 import Pagination from '../shared/Pagination';
+import Loader from '../shared/Loader';
 import './index.scss';
 
 class Characters extends Component {
@@ -72,64 +73,68 @@ class Characters extends Component {
     const indexOfLastPage = currentPage * charactersPerPage;
     const indexOfFirstPage = indexOfLastPage - (charactersPerPage - 1);
     const lastPage = Math.ceil(totalCharacters / charactersPerPage);
+
+    const { isLoading } = this.props;
     return (
       <div>
-        <Header />
-        <div className="char-wrapper">
-          <StarWarTitle header="Starwar Characters" />
+        <Loader isLoading={isLoading}>
+          <Header />
+          <div className="char-wrapper">
+            <StarWarTitle header="Starwar Characters" />
 
-          {/* fillter and grid */}
-          <div className="filter">
-            <h3>FILTER</h3>
-            <DropdownButton
-              id="dropdown-item-button"
-              title={filterTitle}
-              onSelect={this.filterItems}
-            >
-              <Dropdown.Item as="button" eventKey="male">
-                Male
-              </Dropdown.Item>
-              <Dropdown.Item as="button" eventKey="female">
-                Female
-              </Dropdown.Item>
-              <Dropdown.Item as="button" eventKey="robot">
-                Robot
-              </Dropdown.Item>
-            </DropdownButton>
+            <div className="filter">
+              <h3>FILTER</h3>
+              <DropdownButton
+                id="dropdown-item-button"
+                title={filterTitle}
+                onSelect={this.filterItems}
+              >
+                <Dropdown.Item as="button" eventKey="male">
+                  Male
+                </Dropdown.Item>
+                <Dropdown.Item as="button" eventKey="female">
+                  Female
+                </Dropdown.Item>
+                <Dropdown.Item as="button" eventKey="robot">
+                  Robot
+                </Dropdown.Item>
+              </DropdownButton>
+            </div>
+            {characters.length === 0 && <p>No result found</p>}
+            <div className="characters">
+              {characters.map((character, i) => (
+                <div key={character.name}>
+                  <Link to={`profile/${i + 1}`}>
+                    <HorizontalCard
+                      width="35rem"
+                      title={character.name}
+                      birthYear={character.birth_year}
+                      gender={character.gender}
+                    />
+                  </Link>
+                </div>
+              ))}
+            </div>
           </div>
-          {characters.length === 0 && <p>No result found</p>}
-          <div className="characters">
-            {characters.map((character, i) => (
-              <div key={character.name}>
-                <Link to={`profile/${i + 1}`}>
-                  <HorizontalCard
-                    width="35rem"
-                    title={character.name}
-                    birthYear={character.birth_year}
-                    gender={character.gender}
-                  />
-                </Link>
-              </div>
-            ))}
-          </div>
-        </div>
-        <Pagination
-          indexOfFirstPage={indexOfFirstPage}
-          indexOfLastPage={indexOfLastPage}
-          currentPage={currentPage}
-          lastPage={lastPage}
-          prevPage={this.previousPage}
-          nextPage={this.nextPage}
-          totalCharacters={totalCharacters}
-        />
+          <Pagination
+            indexOfFirstPage={indexOfFirstPage}
+            indexOfLastPage={indexOfLastPage}
+            currentPage={currentPage}
+            lastPage={lastPage}
+            prevPage={this.previousPage}
+            nextPage={this.nextPage}
+            totalCharacters={totalCharacters}
+          />
+        </Loader>
       </div>
     );
   }
 }
 
-const mapStateToProps = ({ people }) => ({
+const mapStateToProps = ({ people, loader }) => ({
   characters: people.characters,
-  count: people.count
+  count: people.count,
+  isLoading: loader.isLoading
 });
 
 const mapDispatchToProps = {

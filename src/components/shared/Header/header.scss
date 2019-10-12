@@ -43,10 +43,10 @@
       }
     }
     .starwars-note {
-      width: 50%;
-      margin: 0 auto;
-      font-size: 28px;
-      color: #b9b9b9;
+      width: 70%;
+      margin: 15px auto;
+      font-size: 20px;
+      color: #c3bfbf;
     }
 
     .search-box {
@@ -60,18 +60,25 @@
       input[type='search'] {
         width: 100%;
         padding: 15px 0;
-        padding-left: 200px;
-        font-size: 25px;
+        padding-left: 15%;
+        font-size: 20px;
         border-radius: 5px;
-        background: #fffefe;
+        background: #cccccc;
         border: none;
+        outline: none;
       }
 
       i.fa.fa-search {
         position: absolute;
-        font-size: 40px;
-        left: 100px;
+        font-size: 30px;
+        left: 5%;
         color: #696868;
+      }
+
+      .spinner-border {
+        position: absolute;
+        right: 3%;
+        color: #000;
       }
     }
   }

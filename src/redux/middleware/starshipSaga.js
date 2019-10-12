@@ -8,18 +8,27 @@ import {
 } from '../actionCreator/starship';
 
 import {
+  loadingContent,
+  contentLoaded,
+  searchResultLoading,
+  searchResultLoaded
+} from '../actionCreator/loader';
+
+import {
   GET_STARSHIPS,
   PAGINATE_STARSHIPS,
   SEARCH_STARSHIPS
 } from '../constants/actionTypes';
 
 export function* fetchStarShips() {
+  yield put(loadingContent());
   try {
     const response = yield call(starShips.getStarShips);
     const {
       data: { results, count }
     } = response;
     yield put(getStarshipSuccess(results, count));
+    yield put(contentLoaded());
   } catch (error) {
     console.log(error);
   }
@@ -30,6 +39,7 @@ export function* watchFetchStarShips() {
 }
 
 export function* paginateStarShips(payload) {
+  yield put(loadingContent());
   try {
     const response = yield call(
       starShips.paginateStarShips,
@@ -39,6 +49,7 @@ export function* paginateStarShips(payload) {
       data: { results }
     } = response;
     yield put(paginateStarshipSuccess(results));
+    yield put(contentLoaded());
   } catch (error) {
     console.log(error);
   }
@@ -49,12 +60,14 @@ export function* watchPaginateStarShips() {
 }
 
 export function* searchStarShips(payload) {
+  yield put(searchResultLoading());
   try {
     const response = yield call(starShips.searchStarShips, payload.value);
     const {
       data: { results }
     } = response;
     yield put(searchStarshipSuccess(results));
+    yield put(searchResultLoaded());
   } catch (error) {
     console.log(error);
   }

@@ -13,7 +13,7 @@ const pagePagination = ({
   totalCharacters
 }) => {
   return (
-    <div>
+    <div className="pagination-wrap">
       <Pagination>
         <div className="pagination-count">
           {indexOfFirstPage} - {indexOfLastPage} of {totalCharacters}

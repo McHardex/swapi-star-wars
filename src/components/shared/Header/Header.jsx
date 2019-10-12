@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import Carousel from 'react-bootstrap/Carousel';
+import Spinner from 'react-bootstrap/Spinner';
 import logo from '../../../images/logo.png';
 import starship1 from '../../../images/starship-1.jpg';
 import starship3 from '../../../images/starship-3.jpg';
@@ -17,6 +19,7 @@ const Header = ({
   searchByName,
   searchPlanetByName,
   searchStarshipByName,
+  isLoading,
   page,
   name
 }) => {
@@ -32,15 +35,19 @@ const Header = ({
 
   return (
     <div className="header-container">
-      <img className="logo" src={logo} alt="star-wars-icon" />
+      <Link to="/">
+        <img className="logo" src={logo} alt="star-wars-icon" />
+      </Link>
       {!transition ? (
         <div className="header-content">
           <div className="content-icon-wrap">
-            <img
-              className="content-icon-logo"
-              src={logo}
-              alt="star-wars-icon"
-            />
+            <Link to="/">
+              <img
+                className="content-icon-logo"
+                src={logo}
+                alt="star-wars-icon"
+              />
+            </Link>
             <div className="directory">Directory</div>
           </div>
           <div className="starwars-note">
@@ -56,6 +63,7 @@ const Header = ({
               onChange={search}
             />
             <i className="fa fa-search"></i>
+            {isLoading && <Spinner animation="border" size="sm" />}
           </div>
         </div>
       ) : (
@@ -105,6 +113,10 @@ const Header = ({
   );
 };
 
+const mapStateToProps = ({ loader }) => ({
+  isLoading: loader.searchResultLoading
+});
+
 const mapDispatchToProps = {
   searchByName,
   searchPlanetByName,
@@ -112,6 +124,6 @@ const mapDispatchToProps = {
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(Header);

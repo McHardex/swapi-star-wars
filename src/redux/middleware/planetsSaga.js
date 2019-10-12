@@ -7,6 +7,8 @@ import {
   searchPlanetSuccess
 } from '../actionCreator/planet';
 
+import { loadingContent, contentLoaded } from '../actionCreator/loader';
+
 import {
   GET_PLANET,
   PAGINATE_PLANET,
@@ -14,12 +16,14 @@ import {
 } from '../constants/actionTypes';
 
 export function* fetchPlanets() {
+  yield put(loadingContent());
   try {
     const response = yield call(planet.getPlanets);
     const {
       data: { results, count }
     } = response;
     yield put(getPlanetSuccess(results, count));
+    yield put(contentLoaded());
   } catch (error) {
     console.log(error);
   }

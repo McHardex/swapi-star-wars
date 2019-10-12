@@ -5,7 +5,7 @@ import {
 } from '../constants/actionTypes';
 
 const initialState = {
-  planet: [],
+  planets: [],
   count: 0
 };
 
