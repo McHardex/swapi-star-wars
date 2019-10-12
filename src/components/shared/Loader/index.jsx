@@ -8,8 +8,8 @@ const Loader = ({ children, isLoading }) => {
   return (
     <LoadingOverlay
       active={isLoading}
-      spinner={<img alt="loader" src={logo} />}
-      fadeSpeed={100}
+      spinner={<img alt="loader" className="loader-img" src={logo} />}
+      fadeSpeed={200}
       text={
         <h4 className="loader-text">
           <Spinner animation="border" size="sm" />

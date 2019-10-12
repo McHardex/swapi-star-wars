@@ -7,7 +7,12 @@ import {
   searchPlanetSuccess
 } from '../actionCreator/planet';
 
-import { loadingContent, contentLoaded } from '../actionCreator/loader';
+import {
+  loadingContent,
+  contentLoaded,
+  searchResultLoading,
+  searchResultLoaded
+} from '../actionCreator/loader';
 
 import {
   GET_PLANET,
@@ -34,12 +39,14 @@ export function* watchFetchPlanets() {
 }
 
 export function* paginatePlanets(payload) {
+  yield put(loadingContent());
   try {
     const response = yield call(planet.paginatePlanet, payload.pageNumber);
     const {
       data: { results }
     } = response;
     yield put(paginatePlanetSuccess(results));
+    yield put(contentLoaded());
   } catch (error) {
     console.log(error);
   }
@@ -50,12 +57,14 @@ export function* watchPaginatePlanets() {
 }
 
 export function* searchPlanet(payload) {
+  yield put(searchResultLoading());
   try {
     const response = yield call(planet.searchPlanet, payload.value);
     const {
       data: { results }
     } = response;
     yield put(searchPlanetSuccess(results));
+    yield put(searchResultLoaded());
   } catch (error) {
     console.log(error);
   }

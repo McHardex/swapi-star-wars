@@ -65,36 +65,40 @@ class StarShip extends Component {
     const lastPage = Math.ceil(totalStarships / starshipsPerPerPage);
     return (
       <div>
-        <Loader isLoading={isLoading}>
-          <Header page="starship" />
-          <div className="starship-wrapper">
-            <StarWarTitle header="Popular Starships" />
-            <div className="starship">
-              {starships.map(starship => (
-                <div key={starship.name}>
-                  <VerticalCard
-                    width="30rem"
-                    image={starship1}
-                    title={starship.name}
-                    item1Key="Model"
-                    item2Key="Cargo capacity"
-                    item1={starship.model}
-                    item2={starship.cargo_capacity}
-                  />
-                </div>
-              ))}
+        {isLoading ? (
+          <Loader isLoading={isLoading} />
+        ) : (
+          <div>
+            <Header page="starship" />
+            <div className="starship-wrapper">
+              <StarWarTitle header="Popular Starships" />
+              <div className="starship">
+                {starships.map(starship => (
+                  <div key={starship.name}>
+                    <VerticalCard
+                      width="30rem"
+                      image={starship1}
+                      title={starship.name}
+                      item1Key="Model"
+                      item2Key="Cargo capacity"
+                      item1={starship.model}
+                      item2={starship.cargo_capacity}
+                    />
+                  </div>
+                ))}
+              </div>
             </div>
+            <Pagination
+              indexOfFirstPage={indexOfFirstPage}
+              indexOfLastPage={indexOfLastPage}
+              currentPage={currentPage}
+              lastPage={lastPage}
+              prevPage={this.previousPage}
+              nextPage={this.nextPage}
+              totalCharacters={totalStarships}
+            />
           </div>
-          <Pagination
-            indexOfFirstPage={indexOfFirstPage}
-            indexOfLastPage={indexOfLastPage}
-            currentPage={currentPage}
-            lastPage={lastPage}
-            prevPage={this.previousPage}
-            nextPage={this.nextPage}
-            totalCharacters={totalStarships}
-          />
-        </Loader>
+        )}
       </div>
     );
   }

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import Carousel from 'react-bootstrap/Carousel';
 import Spinner from 'react-bootstrap/Spinner';
 import logo from '../../../images/logo.png';
-import starship1 from '../../../images/starship-1.jpg';
+// import starship1 from '../../../images/starship-6.jpg';
 import starship3 from '../../../images/starship-3.jpg';
 import starship4 from '../../../images/starship-4.jpg';
 import starship5 from '../../../images/starship-5.jpg';
@@ -68,14 +68,24 @@ const Header = ({
         </div>
       ) : (
         <div className="header-content">
-          <Carousel>
-            <Carousel.Item>
-              <img
-                className="d-block w-100"
-                src={starship1}
-                alt="First slide"
-              />
-            </Carousel.Item>
+          {/* <div className="navigate">
+            <i className="fas fa-caret-left"></i>
+            <i className="fas fa-caret-right"></i>
+          </div> */}
+          <Carousel
+            nextIcon={
+              <span aria-hidden="true" className="carousel-control-next-icon">
+                <i className="fas fa-caret-right" />
+              </span>
+            }
+            prevIcon={
+              <span aria-hidden="true" className="carousel-control-prev-icon">
+                <i className="fas fa-caret-left" />
+              </span>
+            }
+            slide={false}
+            fade={true}
+          >
             <Carousel.Item>
               <img
                 className="d-block w-100"
@@ -102,10 +112,6 @@ const Header = ({
             <span className="bracket">[</span>
             <span className="text">{name}</span>
             <span className="bracket">]</span>
-          </div>
-          <div className="navigate">
-            <i className="fas fa-caret-left"></i>
-            <i className="fas fa-caret-right"></i>
           </div>
         </div>
       )}

@@ -41,7 +41,9 @@ class Home extends Component {
     const { isLoading } = this.props;
     return (
       <div className="home">
-        <Loader isLoading={isLoading}>
+        {isLoading ? (
+          <Loader isLoading={isLoading} />
+        ) : (
           <div>
             <Header page="starship" />
             <div className="home-content-wrap">
@@ -99,7 +101,7 @@ class Home extends Component {
               </div>
             </div>
           </div>
-        </Loader>
+        )}
       </div>
     );
   }

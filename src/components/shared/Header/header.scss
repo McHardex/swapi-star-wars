@@ -86,31 +86,56 @@
 
 .carousel {
   width: 100%;
-  margin: 0 auto;
-}
-
-.carousel-item,
-.carousel-item.active {
-  height: 50vh;
-  width: 100% !important;
-  object-fit: cover;
-
-  img {
-    height: 50vh;
-    width: 100% !important;
-    object-fit: cover;
-  }
 }
 
 .carousel-inner {
   width: 100%;
   margin: 0 auto;
+
+  img {
+    width: 200px;
+    height: 400px;
+    object-fit: cover;
+  }
 }
 
 ol.carousel-indicators,
-a.carousel-control-next,
-a.carousel-control-prev {
+.sr-only {
   display: none;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-image: none;
+  bottom: 15%;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  bottom: -15%;
+  z-index: 1;
+  width: 100% !important;
+  position: absolute;
+  right: 0;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  position: absolute;
+  right: 10%;
+}
+
+.carousel-control-next-icon {
+  right: 0;
+}
+
+i.fas.fa-caret-left,
+i.fas.fa-caret-right {
+  font-size: 30px;
+  border: 3px solid #fff;
+  padding: 14px 25px;
+  border-radius: 50%;
+  cursor: pointer;
 }
 
 .caption {
@@ -119,8 +144,9 @@ a.carousel-control-prev {
   align-items: center;
   position: absolute;
   left: 15%;
-  bottom: 20%;
+  bottom: 10%;
   z-index: 9999;
+
   .bracket {
     font-size: 100px;
   }
@@ -128,6 +154,7 @@ a.carousel-control-prev {
   .text {
     font-size: 50px;
     font-weight: bold;
+    margin-top: 17px;
   }
 }
 
@@ -137,15 +164,6 @@ a.carousel-control-prev {
   justify-content: space-between;
   position: absolute;
   right: 10%;
-  bottom: 25%;
+  bottom: 15%;
   z-index: 9999;
-
-  i.fas.fa-caret-left,
-  i.fas.fa-caret-right {
-    font-size: 30px;
-    border: 2px solid #fff;
-    padding: 14px 25px;
-    border-radius: 50%;
-    cursor: pointer;
-  }
 }
