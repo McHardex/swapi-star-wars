@@ -77,55 +77,59 @@ class Characters extends Component {
     const { isLoading } = this.props;
     return (
       <div>
-        <Loader isLoading={isLoading}>
-          <Header />
-          <div className="char-wrapper">
-            <StarWarTitle header="Starwar Characters" />
+        {isLoading ? (
+          <Loader isLoading={isLoading} />
+        ) : (
+          <div>
+            <Header />
+            <div className="char-wrapper">
+              <StarWarTitle header="Starwar Characters" />
 
-            <div className="filter">
-              <h3>FILTER</h3>
-              <DropdownButton
-                id="dropdown-item-button"
-                title={filterTitle}
-                onSelect={this.filterItems}
-              >
-                <Dropdown.Item as="button" eventKey="male">
-                  Male
-                </Dropdown.Item>
-                <Dropdown.Item as="button" eventKey="female">
-                  Female
-                </Dropdown.Item>
-                <Dropdown.Item as="button" eventKey="robot">
-                  Robot
-                </Dropdown.Item>
-              </DropdownButton>
+              <div className="filter">
+                <h3>FILTER</h3>
+                <DropdownButton
+                  id="dropdown-item-button"
+                  title={filterTitle}
+                  onSelect={this.filterItems}
+                >
+                  <Dropdown.Item as="button" eventKey="male">
+                    Male
+                  </Dropdown.Item>
+                  <Dropdown.Item as="button" eventKey="female">
+                    Female
+                  </Dropdown.Item>
+                  <Dropdown.Item as="button" eventKey="robot">
+                    Robot
+                  </Dropdown.Item>
+                </DropdownButton>
+              </div>
+              {characters.length === 0 && <p>No result found</p>}
+              <div className="characters">
+                {characters.map((character, i) => (
+                  <div key={character.name}>
+                    <Link to={`profile/${i + 1}`} className="char-wrap">
+                      <HorizontalCard
+                        width="35rem"
+                        title={character.name}
+                        birthYear={character.birth_year}
+                        gender={character.gender}
+                      />
+                    </Link>
+                  </div>
+                ))}
+              </div>
             </div>
-            {characters.length === 0 && <p>No result found</p>}
-            <div className="characters">
-              {characters.map((character, i) => (
-                <div key={character.name}>
-                  <Link to={`profile/${i + 1}`}>
-                    <HorizontalCard
-                      width="35rem"
-                      title={character.name}
-                      birthYear={character.birth_year}
-                      gender={character.gender}
-                    />
-                  </Link>
-                </div>
-              ))}
-            </div>
+            <Pagination
+              indexOfFirstPage={indexOfFirstPage}
+              indexOfLastPage={indexOfLastPage}
+              currentPage={currentPage}
+              lastPage={lastPage}
+              prevPage={this.previousPage}
+              nextPage={this.nextPage}
+              totalCharacters={totalCharacters}
+            />
           </div>
-          <Pagination
-            indexOfFirstPage={indexOfFirstPage}
-            indexOfLastPage={indexOfLastPage}
-            currentPage={currentPage}
-            lastPage={lastPage}
-            prevPage={this.previousPage}
-            nextPage={this.nextPage}
-            totalCharacters={totalCharacters}
-          />
-        </Loader>
+        )}
       </div>
     );
   }

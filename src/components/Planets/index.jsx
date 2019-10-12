@@ -5,6 +5,7 @@ import VerticalCard from '../shared/Cards/VerticalCard';
 import StarWarTitle from '../shared/StarWar/StarwarTitle';
 import { getPlanets, paginatePlanet } from '../../redux/actionCreator/planet';
 import Pagination from '../shared/Pagination';
+import Loader from '../shared/Loader';
 import planet1 from '../../images/planet-1.jpg';
 import './index.scss';
 
@@ -57,44 +58,53 @@ class Planets extends Component {
     const indexOfLastPage = currentPage * planetsPerPerPage;
     const indexOfFirstPage = indexOfLastPage - (planetsPerPerPage - 1);
     const lastPage = Math.ceil(totalPlanets / planetsPerPerPage);
+
+    const { isLoading } = this.props;
     return (
       <div>
-        <Header page="planet" />
-        <div className="planet-wrapper">
-          <StarWarTitle header="Popular Planets" />
-          <div className="planets">
-            {planets.map(planet => (
-              <div key={planet.name}>
-                <VerticalCard
-                  width="30rem"
-                  image={planet1}
-                  title={planet.name}
-                  item1Key="Population"
-                  item2Key="Temperature"
-                  item1={planet.population}
-                  item2={planet.climate}
-                />
+        {isLoading ? (
+          <Loader isLoading={isLoading} />
+        ) : (
+          <div>
+            <Header page="planet" />
+            <div className="planet-wrapper">
+              <StarWarTitle header="Popular Planets" />
+              <div className="planets">
+                {planets.map(planet => (
+                  <div key={planet.name}>
+                    <VerticalCard
+                      width="30rem"
+                      image={planet1}
+                      title={planet.name}
+                      item1Key="Population"
+                      item2Key="Temperature"
+                      item1={planet.population}
+                      item2={planet.climate}
+                    />
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
+            <Pagination
+              indexOfFirstPage={indexOfFirstPage}
+              indexOfLastPage={indexOfLastPage}
+              currentPage={currentPage}
+              lastPage={lastPage}
+              prevPage={this.previousPage}
+              nextPage={this.nextPage}
+              totalCharacters={totalPlanets}
+            />
           </div>
-        </div>
-        <Pagination
-          indexOfFirstPage={indexOfFirstPage}
-          indexOfLastPage={indexOfLastPage}
-          currentPage={currentPage}
-          lastPage={lastPage}
-          prevPage={this.previousPage}
-          nextPage={this.nextPage}
-          totalCharacters={totalPlanets}
-        />
+        )}
       </div>
     );
   }
 }
 
-const mapStateToProps = ({ planets }) => ({
+const mapStateToProps = ({ planets, loader }) => ({
   planets: planets.planets,
-  count: planets.count
+  count: planets.count,
+  isLoading: loader.isLoading
 });
 
 const mapDispatchToProps = {
