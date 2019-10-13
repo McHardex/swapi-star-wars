@@ -1,12 +1,13 @@
 .char-wrapper {
-  width: 90%;
+  width: 100%;
   margin: 0 auto;
 
   .characters {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    grid-gap: 40px 0;
-    justify-items: center;
+    grid-gap: 40px;
+    width: 70%;
+    margin: 0 auto;
 
     .char-wrap {
       cursor: pointer;
@@ -24,12 +25,18 @@
     display: flex;
     align-items: center;
     padding: 32px 0px;
-    width: 82.5%;
+    width: 70%;
     margin: 0 auto;
 
     h3 {
       margin: 0;
       margin-right: 10px;
     }
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .characters {
+    grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
   }
 }

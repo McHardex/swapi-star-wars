@@ -1,5 +1,5 @@
 .planet-wrapper {
-  width: 90%;
+  width: 100%;
   margin: 0 auto;
 
   .planets {
@@ -7,5 +7,21 @@
     grid-template-columns: repeat(3, minmax(0, 1fr));
     grid-gap: 40px 0;
     justify-items: center;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  .planet-wrapper {
+    .planets {
+      grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+    }
+  }
+}
+
+@media (min-width: 426px) and (max-width: 768px) {
+  .planet-wrapper {
+    .planets {
+      grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
   }
 }

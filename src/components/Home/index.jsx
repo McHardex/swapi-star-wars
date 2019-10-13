@@ -72,7 +72,7 @@ class Home extends Component {
               <div className="planet">
                 {planets.map(planet => (
                   <div key={planet.name}>
-                    <Card style={{ width: '25rem' }}>
+                    <Card style={{ maxWidth: '25rem' }}>
                       <Card.Img variant="top" src={planet1} />
                       <Card.Body>
                         <Card.Title>{planet.name}</Card.Title>

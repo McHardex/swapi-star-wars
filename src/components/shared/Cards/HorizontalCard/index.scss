@@ -6,7 +6,7 @@
 
   .card-img-top {
     border: none;
-    width: 20rem;
+    max-width: 25rem;
   }
 
   .card-body {
@@ -36,6 +36,15 @@
       a:hover {
         text-decoration: underline;
       }
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .char-wrapper {
+    .horizontal-card {
+      display: flex;
+      flex-direction: column;
     }
   }
 }

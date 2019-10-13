@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import Carousel from 'react-bootstrap/Carousel';
 import Spinner from 'react-bootstrap/Spinner';
 import logo from '../../../images/logo.png';
-// import starship1 from '../../../images/starship-6.jpg';
 import starship3 from '../../../images/starship-3.jpg';
 import starship4 from '../../../images/starship-4.jpg';
 import starship5 from '../../../images/starship-5.jpg';
@@ -62,16 +61,14 @@ const Header = ({
               placeholder="Enter a search term"
               onChange={search}
             />
-            <i className="fa fa-search"></i>
-            {isLoading && <Spinner animation="border" size="sm" />}
+            <i className="fa fa-search" />
+            {isLoading && (
+              <Spinner animation="border" size="sm" className="spinner" />
+            )}
           </div>
         </div>
       ) : (
         <div className="header-content">
-          {/* <div className="navigate">
-            <i className="fas fa-caret-left"></i>
-            <i className="fas fa-caret-right"></i>
-          </div> */}
           <Carousel
             nextIcon={
               <span aria-hidden="true" className="carousel-control-next-icon">

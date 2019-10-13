@@ -12,7 +12,7 @@ const VerticalCard = ({
   width,
   image
 }) => (
-  <Card style={{ width }}>
+  <Card style={{ maxWidth: width }}>
     <Card.Img variant="top" src={image} />
     <Card.Body>
       <Card.Title>{title}</Card.Title>

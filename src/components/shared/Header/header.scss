@@ -168,3 +168,37 @@ i.fas.fa-caret-right {
   bottom: 15%;
   z-index: 9999;
 }
+
+@media only screen and (max-width: 768px) {
+  .header-container {
+    .logo,
+    .carousel-control-prev,
+    .carousel-control-next {
+      display: none;
+    }
+
+    .search-box {
+      width: 90% !important;
+    }
+
+    .spinner {
+      margin-right: 10px;
+    }
+
+    .directory {
+      font-size: 30px !important;
+    }
+  }
+
+  .caption {
+    width: 100%;
+    left: 0;
+    justify-content: center;
+    .bracket {
+      font-size: 60px;
+    }
+    .text {
+      font-size: 30px;
+    }
+  }
+}
