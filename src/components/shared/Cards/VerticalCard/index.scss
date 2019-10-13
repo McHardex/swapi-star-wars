@@ -1,7 +1,6 @@
 .card {
   border-radius: 0;
   border-bottom: 8px solid #c3c3c359;
-  width: 20rem;
 }
 
 .card-img-top {
@@ -44,5 +43,11 @@
   .btn-dark:hover {
     background: #000;
     color: #fff;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .card {
+    width: 20rem !important;
   }
 }

@@ -52,7 +52,7 @@ class Home extends Component {
                 {starships.map(starship => (
                   <div key={starship.name}>
                     <VerticalCard
-                      width="30rem"
+                      width="25rem"
                       image={starship1}
                       title={starship.name}
                       item1Key="Model"
@@ -72,7 +72,7 @@ class Home extends Component {
               <div className="planet">
                 {planets.map(planet => (
                   <div key={planet.name}>
-                    <Card style={{ maxWidth: '25rem' }}>
+                    <Card style={{ width: '24rem' }}>
                       <Card.Img variant="top" src={planet1} />
                       <Card.Body>
                         <Card.Title>{planet.name}</Card.Title>
