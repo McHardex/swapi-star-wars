@@ -73,7 +73,7 @@ class Planets extends Component {
                 {planets.map(planet => (
                   <div key={planet.name}>
                     <VerticalCard
-                      width="30rem"
+                      width="25rem"
                       image={planet1}
                       title={planet.name}
                       item1Key="Population"

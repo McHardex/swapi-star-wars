@@ -8,8 +8,12 @@ const HorizontalCard = ({ title, birthYear, gender, width }) => (
     <Card.Img variant="top" src={char1} />
     <Card.Body>
       <Card.Title>{title}</Card.Title>
-      <Card.Text>Birth Year: {birthYear}</Card.Text>
-      <Card.Text>Gender: {gender}</Card.Text>
+      <Card.Text>
+        Birth Year: <span>{birthYear}</span>
+      </Card.Text>
+      <Card.Text>
+        Gender: <span>{gender}</span>
+      </Card.Text>
     </Card.Body>
   </Card>
 );

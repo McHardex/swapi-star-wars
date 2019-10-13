@@ -33,6 +33,7 @@
       grid-template-columns: repeat(2, minmax(0, 1fr));
       grid-gap: 40px 0;
       justify-items: center;
+      width: 40rem;
     }
 
     .planet {
@@ -59,6 +60,57 @@
             text-align: center;
           }
         }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  .home {
+    .home-content-wrap {
+      width: 95%;
+    }
+    .starship,
+    .characters,
+    .planet {
+      grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+      width: 100%;
+    }
+
+    .characters {
+      margin: 0 auto;
+      width: 20rem !important;
+
+      .horizontal-card {
+        width: 20rem !important;
+        display: flex;
+        flex-direction: column;
+      }
+    }
+
+    .view-more {
+      padding: 15px 30% !important;
+    }
+  }
+}
+
+@media (min-width: 426px) and (max-width: 768px) {
+  .home {
+    .home-content-wrap {
+      width: 90%;
+    }
+    .starship,
+    .characters,
+    .planet {
+      grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+
+    .characters {
+      margin: 0 auto;
+      grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+
+      .horizontal-card {
+        width: 40rem !important;
       }
     }
   }

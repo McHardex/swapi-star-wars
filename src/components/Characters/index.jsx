@@ -109,7 +109,7 @@ class Characters extends Component {
                   <div key={character.name}>
                     <Link to={`profile/${i + 1}`} className="char-wrap">
                       <HorizontalCard
-                        width="35rem"
+                        width="100%"
                         title={character.name}
                         birthYear={character.birth_year}
                         gender={character.gender}

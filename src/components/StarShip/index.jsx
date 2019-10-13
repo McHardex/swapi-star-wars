@@ -76,7 +76,7 @@ class StarShip extends Component {
                 {starships.map(starship => (
                   <div key={starship.name}>
                     <VerticalCard
-                      width="30rem"
+                      width="25rem"
                       image={starship1}
                       title={starship.name}
                       item1Key="Model"
