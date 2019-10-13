@@ -34,4 +34,4 @@ List of libraries, tools, etc needed (e.g. npm, yarn, etc)
 
 ## Prototype
 
-The application is staged [here](https://crypro-order-book.netlify.com/)
+The application is staged [here](https://starwarsmch.netlify.com)
